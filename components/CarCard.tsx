@@ -11,6 +11,7 @@ interface CarCardProps {
 const CarCard = ({ car }: CarCardProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car;
   const carRent = calculateCarRent(year, city_mpg);
+  const [isopen, setIsopen] = useState(false);
   return (
     <div className="car-card group">
       <div className="car-card__content">
@@ -32,6 +33,39 @@ const CarCard = ({ car }: CarCardProps) => {
           priority
           className="object-contain"
         />
+        <div className="relative flex w-full mt-2">
+          <div className="flex group-hover:invisible w-full justify-between text-grey">
+            <div className="flex flex-col justify-center items-center gap-2">
+              <Image
+                src="/steering-wheel.svg"
+                alt="steering wheel"
+                width={20}
+                height={20}
+              />
+              <p className="text-[14px]">
+                {transmission === "a" ? "Automatic" : "Manual"}
+              </p>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-2">
+              <Image src="/tire.svg" alt="tire" width={20} height={20} />
+              <p className="text-[14px]">{drive.toLocaleUpperCase()}</p>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-2">
+              <Image src="/gas.svg" alt="gas" width={20} height={20} />
+              <p className="text-[14px]">{city_mpg}</p>
+            </div>
+          </div>
+          <div className="car-card__btn-container">
+            <CustomButton
+              title="View More"
+              containerStyles="w-full py-[16px]
+            rounded-full bg-primary-blue"
+              textStyles="text-white text-[14px] leading-[17px] font-bold"
+              rightIcon="/right-arrow.svg"
+              handleClick={() => setIsopen(true)}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+// This code fetches car data from RapidAPI and calculates the rental rate for each car
+
 export async function fetchCars() {
   const headers = {
     "X-RapidAPI-Key": "48faa0797fmshd6c50fc56bcba77p1d03dejsn69689e2f827d",
